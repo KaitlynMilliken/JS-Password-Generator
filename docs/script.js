@@ -1,16 +1,6 @@
 function generatePassword(){
-  let password = {};
 
-  password.length = prompt("How long does your password need to be? Please only enter numeric values between 8 and 128 characters");
-  
-  if(password.length < 8 || password.length > 128){
-    passwordPrompt();
-  }
-  
-  password.lowercase = prompt("Does your password need to have lowercase letter(s)? Please answer yes or no only.");
-  password.uppercase = prompt("Does your password need to have uppercase letter(s)? Please answer yes or no only.");
-  password.numeric = prompt("Does your passsword need to include a number? Please answer yes or no only.");
-  password.specialCharacters = prompt("Does your password require special characters? Please answer yes or no only");
+  let password = promptPassword();
 
   for (const requirement in password){
     if (password[requirement] == "yes"){
@@ -27,6 +17,24 @@ function generatePassword(){
   return createPassword(password);
 }
 
+function promptPassword(){
+  let PW = {};
+
+  PW.length = prompt("How long does your password need to be? Please only enter numeric values between 8 and 128 characters");
+  
+  if(PW.length < 8 || PW.length > 128){
+    promptPassword();
+  }
+  
+  else{
+    PW.lowercase = prompt("Does your password need to have lowercase letter(s)? Please answer yes or no only.");
+    PW.uppercase = prompt("Does your password need to have uppercase letter(s)? Please answer yes or no only.");
+    PW.numeric = prompt("Does your passsword need to include a number? Please answer yes or no only.");
+    PW.specialCharacters = prompt("Does your password require special characters? Please answer yes or no only");
+  }
+
+  return PW;
+}
 
 
 function createPassword(password){
