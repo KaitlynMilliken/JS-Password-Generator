@@ -1,12 +1,16 @@
 function generatePassword(){
   let password = {};
 
-  password.length = prompt("How long does your password need to be? Please only enter numeric values between 8 and 12 characters");
+  password.length = prompt("How long does your password need to be? Please only enter numeric values between 8 and 128 characters");
+  
+  if(password.length < 8 || password.length > 128){
+    passwordPrompt();
+  }
+  
   password.lowercase = prompt("Does your password need to have lowercase letter(s)? Please answer yes or no only.");
   password.uppercase = prompt("Does your password need to have uppercase letter(s)? Please answer yes or no only.");
   password.numeric = prompt("Does your passsword need to include a number? Please answer yes or no only.");
   password.specialCharacters = prompt("Does your password require special characters? Please answer yes or no only");
-
 
   for (const requirement in password){
     if (password[requirement] == "yes"){
@@ -24,9 +28,11 @@ function generatePassword(){
 }
 
 
+
 function createPassword(password){
   let secretPassword = "";
   let alphabet = "abcdefghijklmnopqrstuvwxyz";
+
 
   //lowercase
   if (password.lowercase){
@@ -55,7 +61,7 @@ function createPassword(password){
   }
 
   //length
-  if(secretPassword.length < password.length){;
+  if(secretPassword.length < password.length){
     while(secretPassword.length < password.length){
       secretPassword = secretPassword + alphabet[Math.floor(Math.random() * alphabet.length)];
     }
